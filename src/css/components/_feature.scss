@@ -16,6 +16,7 @@
     &::before {
       @include pseudo();
       @include transition(background);
+      z-index: 1;
       top: 0;
       right: 0;
       bottom: 0;
@@ -26,6 +27,7 @@
     p {
       @include center(both);
       @include transition((opacity, visibility));
+      z-index: 2;
       font-size: em(42px);
       font-weight: 500;
       color: palette(white);
