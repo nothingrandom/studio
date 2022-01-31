@@ -1,0 +1,54 @@
+body {
+  font-family: sans-serif;
+}
+
+%font-sans {
+  font-family: $sans;
+  font-feature-settings: 'ss02', 'ss04', 'ss06'; //ss03 for curled 'r'
+  font-display: swap;
+}
+
+// %font-serif {
+//   font-family: $serif;
+//   font-display: swap;
+// }
+
+%font-mono {
+  font-family: $mono;
+}
+
+@include header-style() {
+  @extend %font-sans;
+  // @include color-schemes(color, palette(black), palette(white));
+  font-weight: 400;
+}
+
+@include paragraph-style() {
+  @extend %font-sans;
+  // @include color-schemes(color, palette(black), palette(white));
+}
+
+h1 {
+  font-size: em(42px);
+  font-weight: 600;
+
+  @include breakpoint(md) {
+    font-size: em(56px);
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font--bold {
+  font-weight: 700;
+}
