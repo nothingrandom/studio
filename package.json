@@ -8,14 +8,13 @@
   "scripts": {
     "test": "npm run lint",
     "clean": "rm -rf dist",
-    "eleventy:default": "npx eleventy",
-    "eleventy:watch": "npx eleventy --watch",
+    "eleventy:default": "npx @11ty/eleventy",
+    "eleventy:watch": "npx @11ty/eleventy --serve",
     "styles:prod": "sass src/css/:dist/css/ && postcss ./dist/css/*.css --replace",
     "styles:dev": "sass src/css/:dist/css/ && postcss ./dist/css/*.css --replace",
     "scripts:prod": "webpack --mode=production",
     "scripts:dev": "webpack --mode=development",
-    "serve": "light-server -c .lightserverrc",
-    "dev": "ELEVENTY_ENV=development npm-run-all clean styles:dev scripts:dev eleventy:default --parallel eleventy:watch serve --print-label",
+    "dev": "ELEVENTY_ENV=development npm-run-all clean styles:dev scripts:dev eleventy:default --parallel eleventy:watch --print-label",
     "dev:debug": "DEBUG=* npm run dev",
     "build": "run-s clean styles:prod scripts:prod eleventy:default --print-label",
     "lint": "eslint --ext .js src",
@@ -27,12 +26,10 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.2",
-    "graphlib": "^2.1.8",
-    "jsonlint": "^1.6.3",
-    "light-server": "2.6.4"
+    "jsonlint": "^1.6.3"
   },
   "dependencies": {
-    "@11ty/eleventy": "1.0.0",
+    "@11ty/eleventy": "^2.0.1",
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "@fortawesome/fontawesome-pro": "^6.0.0-beta3",
@@ -57,7 +54,6 @@
     "postcss-cli": "^8.0.0",
     "postcss-import": "13.0.0",
     "sass": "^1.47.0",
-    "snyk": "1.685.0",
     "webpack": "^5.1.1",
     "webpack-cli": "^4.0.0"
   },
