@@ -12,4 +12,4 @@
 
 > This site is built with things like [eleventy](https://www.11ty.io/), [https://github.com/ianrose/deventy](deventy), and [barebonesio](https://github.com/nothingrandom/barebonesio) under the hood. It's hosted on [GitHub](https://github.com/nothingrandom/studio) and served by [Netlify]((https://www.netlify.com/)).
 
-`yarn dev` for localhost and `yarn build` for dist
+`npm run dev` for localhost and `npm run build` for dist
