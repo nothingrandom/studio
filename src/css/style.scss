@@ -2,7 +2,9 @@
 @import 'browser-reset/reset.css';
 @import 'utilities', 'variables', 'grid', 'colors', 'fonts', 'typography';
 
-@import 'components/feature';
+@import 'pages/index';
+@import 'components/button';
+@import 'components/profile';
 
 html {
   @include font-smoothing(on);

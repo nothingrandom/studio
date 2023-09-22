@@ -16,11 +16,11 @@
     &::before {
       @include pseudo();
       @include transition(background);
-      z-index: 1;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
+      z-index: 1;
       background: rgba(0, 0, 0, .3);
     }
 
@@ -28,11 +28,11 @@
       @include center(both);
       @include transition((opacity, visibility));
       z-index: 2;
+      visibility: hidden;
+      color: palette(white);
+      opacity: 0;
       font-size: em(42px);
       font-weight: 500;
-      color: palette(white);
-      visibility: hidden;
-      opacity: 0;
     }
 
     &:hover {

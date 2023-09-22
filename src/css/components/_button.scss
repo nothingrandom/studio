@@ -1,0 +1,36 @@
+.button {
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+  padding: 20px 50px;
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  font-size: em(24px);
+  font-weight: bold;
+  text-decoration: none;
+
+  &::after {
+    position: absolute;
+    top: 8px;
+    right: -8px;
+    bottom: -8px;
+    left: 8px;
+    z-index: -1;
+    content: '';
+    background-color: black;
+  }
+
+  &:hover,
+  &:active {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;
+
+    &::after {
+      border: 2px solid black;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+  }
+}
