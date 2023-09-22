@@ -2,7 +2,7 @@
 
 const filters = require('./utils/filters.js');
 const shortcodes = require('./utils/shortcodes.js');
-const readingTime = require('eleventy-plugin-reading-time');
+// const readingTime = require('eleventy-plugin-reading-time');
 const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
 const cacheBuster = require('@mightyplow/eleventy-plugin-cache-buster');
 const pjson = require('./package.json');
@@ -28,26 +28,12 @@ module.exports = (eleventyConfig) => {
     eleventyConfig.addShortcode(shortCodeName, shortcodes[shortCodeName])
   })
 
-  eleventyConfig.addCollection('food', collection => {
-    // return collection.getFilteredByGlob('**/food/*.md').reverse();
-    return collection.getFilteredByGlob('**/food/*.md').sort(function(a, b) {
-      //return a.date - b.date; // sort by date - ascending
-      // return b.date - a.date; // sort by date - descending
-      return a.inputPath.localeCompare(b.inputPath); // sort by path - ascending
-      // return b.inputPath.localeCompare(a.inputPath); // sort by path - descending
-    });
-  });
-
-  eleventyConfig.addCollection('posts', collection => {
-    return collection.getFilteredByGlob('**/blog/*.md').reverse();
-  });
-
   eleventyConfig
     .addPassthroughCopy('_redirects')
     .addPassthroughCopy('src/img')
     .addPassthroughCopy('src/fonts');
 
-  eleventyConfig.addPlugin(readingTime);
+  // eleventyConfig.addPlugin(readingTime);
 
   if (process.env.ELEVENTY_ENV !== 'development') {
     eleventyConfig.addPlugin(lazyImagesPlugin, {
