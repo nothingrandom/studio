@@ -14,14 +14,16 @@ permalink: /index.html
       </div>
     </div>
   </div>
-</div>
-<div class='features'>
-  <a href='https://b.nothingrandom.studio'>
-    <img src='/img/benjamingrant.jpg' />
-    <p>b</p>
-  </a>
-  <a href='https://indiagrant.com'>
-    <img src='/img/indiagrant.jpg' />
-    <p>india</p>
-  </a>
+  <div class='section section--profile'>
+    <div class='row'>
+      <div class='col-xs-12 col-md-6'>
+        {% set profile = { name: "B", bio: "lead javascript / frontend engineer", img: "/img/benjamingrant.jpg", link: "https://b.nothingrandom.studio"} %}
+        {% include "partials/profile.njk" %}
+      </div>
+      <div class='col-xs-12 col-md-6'>
+        {% set profile = { name: "India", bio: "copywriter and author", img: "/img/indiagrant.jpg", link: "https://indiagrant.com"} %}
+        {% include "partials/profile.njk" %}
+      </div>
+    </div>
+  </div>
 </div>
