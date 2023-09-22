@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "yarn lint",
+    "test": "npm run lint",
     "clean": "rm -rf dist",
     "eleventy:default": "npx eleventy",
     "eleventy:watch": "npx eleventy --watch",
@@ -20,7 +20,7 @@
     "build": "run-s clean styles:prod scripts:prod eleventy:default --print-label",
     "lint": "eslint --ext .js src",
     "postbuild:lint": "jsonlint dist/*.json -q",
-    "build-postbuild": "yarn run build postbuild:lint"
+    "build-postbuild": "npm run build postbuild:lint"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

@@ -2,8 +2,7 @@
 [build]
   base = ""
   publish = "dist/"
-  command = "yarn build-postbuild"
-  environment = { YARN_FLAGS = "--pure-lockfile" }
+  command = "npm run build-postbuild"
 
 # Production context
 [context.production]
