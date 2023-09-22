@@ -2,7 +2,7 @@
   "name": "studio",
   "version": "2.1.10",
   "description": "nothingrandom studio website",
-  "author": "Benjamin Hollway <benjamin@nothingrandom.com>",
+  "author": "Benjamin Grant <benjamin@nothingrandom.com>",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
