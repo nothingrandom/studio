@@ -1,8 +1,7 @@
 [Settings]
 [build]
-  base = ""
-  publish = "dist/"
-  command = "npm run build-postbuild"
+  command = "npm run build"
+  publish = "_site"
 
 # Production context
 [context.production]

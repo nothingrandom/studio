@@ -1,0 +1,15 @@
+---
+permalink: site.webmanifest
+eleventyExcludeFromCollections: true
+---
+{
+  "name": "{{ meta.title }}",
+  "short_name": "{{ meta.description | default(meta.title) }}",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "description": "{{ meta.description }}"
+  "lang": "{{ meta.lang | default('en') }}",
+  "orientation": "natural",
+}

@@ -1,80 +1,138 @@
-"use strict";
+const markdownIt = require('markdown-it')
+const markdownItAnchor = require('markdown-it-anchor')
 
-const filters = require('./utils/filters.js');
-const shortcodes = require('./utils/shortcodes.js');
-// const readingTime = require('eleventy-plugin-reading-time');
-const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
-const cacheBuster = require('@mightyplow/eleventy-plugin-cache-buster');
-const pjson = require('./package.json');
+const EleventyPluginNavigation = require('@11ty/eleventy-navigation')
+const EleventyPluginRss = require('@11ty/eleventy-plugin-rss')
+const EleventyPluginSyntaxhighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
+const EleventyVitePlugin = require('@11ty/eleventy-plugin-vite')
 
-// The @11ty/eleventy configuration.
-// For a full list of options, see: https://www.11ty.io/docs/config/
+const rollupPluginCritical = require('rollup-plugin-critical').default
 
-module.exports = (eleventyConfig) => {
-  const dirs = {
-    input: 'src',
-    data: '_data',
-    includes: '_includes',
-    output: 'dist',
-  }
+const filters = require('./utils/filters.js')
+const transforms = require('./utils/transforms.js')
+const shortcodes = require('./utils/shortcodes.js')
 
-  // Filters
-  Object.keys(filters).forEach(filterName => {
-    eleventyConfig.addFilter(filterName, filters[filterName])
-  })
+const { resolve } = require('path')
 
-  // Shortcodes
-  Object.keys(shortcodes).forEach(shortCodeName => {
-    eleventyConfig.addShortcode(shortCodeName, shortcodes[shortCodeName])
-  })
+module.exports = function (eleventyConfig) {
+  eleventyConfig.setServerPassthroughCopyBehavior('copy');
+  eleventyConfig.addPassthroughCopy("public");
 
-  eleventyConfig
-    .addPassthroughCopy('_redirects')
-    .addPassthroughCopy('src/img')
-    .addPassthroughCopy('src/fonts');
+  // Plugins
+  eleventyConfig.addPlugin(EleventyPluginNavigation)
+  eleventyConfig.addPlugin(EleventyPluginRss)
+  eleventyConfig.addPlugin(EleventyPluginSyntaxhighlight)
+  eleventyConfig.addPlugin(EleventyVitePlugin, {
+    tempFolderName: '.11ty-vite', // Default name of the temp folder
 
-  // eleventyConfig.addPlugin(readingTime);
-
-  if (process.env.ELEVENTY_ENV !== 'development') {
-    eleventyConfig.addPlugin(lazyImagesPlugin, {
-      appendInitScript: false,
-      className: ['lazyload', 'blur-up'],
-      transformImgPath: (imgPath) => {
-        if (imgPath.startsWith('/') && !imgPath.startsWith('//')) {
-          return `./src${imgPath}`;
-        }
-
-        return imgPath;
+    // Vite options (equal to vite.config.js inside project root)
+    viteOptions: {
+      publicDir: 'public',
+      clearScreen: false,
+      server: {
+        mode: 'development',
+        middlewareMode: true,
       },
-    });
-  }
-
-  const cacheBusterOptions = {
-    outputDirectory: dirs.output,
-    createResourceHash(outputDirectoy, url, target) {
-      return pjson.version;
+      appType: 'custom',
+      assetsInclude: ['**/*.xml', '**/*.txt'],
+      build: {
+        mode: 'production',
+        sourcemap: 'true',
+        manifest: true,
+        // This puts CSS and JS in subfolders – remove if you want all of it to be in /assets instead
+        rollupOptions: {
+          output: {
+            assetFileNames: 'assets/css/main.[hash].css',
+            chunkFileNames: 'assets/js/[name].[hash].js',
+            entryFileNames: 'assets/js/[name].[hash].js'
+          },
+          plugins: [rollupPluginCritical({
+            criticalUrl: './_site/',
+            criticalBase: './_site/',
+            criticalPages: [
+              { uri: 'index.html', template: 'index' },
+              { uri: 'posts/index.html', template: 'posts/index' },
+              { uri: '404.html', template: '404' },
+            ],
+            criticalConfig: {
+              inline: true,
+              dimensions: [
+                {
+                  height: 900,
+                  width: 375,
+                },
+                {
+                  height: 720,
+                  width: 1280,
+                },
+                {
+                  height: 1080,
+                  width: 1920,
+                }
+              ],
+              penthouse: {
+                forceInclude: ['.fonts-loaded-1 body', '.fonts-loaded-2 body'],
+              }
+            }
+          })
+        ]
+      }
     }
-  };
-  eleventyConfig.addPlugin(cacheBuster(cacheBusterOptions));
+  }
+})
 
-  return {
-    // Set the path from the root of the deploy domain
-    // i.e, example.com + "/"
-    pathPrefix: "/",
+// Filters
+Object.keys(filters).forEach((filterName) => {
+  eleventyConfig.addFilter(filterName, filters[filterName])
+})
 
-    // Set the src and output directories
-    dir: dirs,
+// Transforms
+Object.keys(transforms).forEach((transformName) => {
+  eleventyConfig.addTransform(transformName, transforms[transformName])
+})
 
-    // Set the default template engine from `liquid` to `njk`
-    htmlTemplateEngine: "njk",
-    markdownTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
+// Shortcodes
+Object.keys(shortcodes).forEach((shortcodeName) => {
+  eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
+})
 
-    // Set up eleventy to pass-through files to be compiled by Parcel
-    passthroughFileCopy: true
-  };
-};
+eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`)
 
-function resolveNameFromPath(path) {
-  return path.basename(path);
+// Customize Markdown library and settings:
+let markdownLibrary = markdownIt({
+  html: true,
+  breaks: true,
+  linkify: true
+}).use(markdownItAnchor, {
+  permalink: markdownItAnchor.permalink.ariaHidden({
+    placement: 'after',
+    class: 'direct-link',
+    symbol: '#',
+    level: [1, 2, 3, 4]
+  }),
+  slugify: eleventyConfig.getFilter('slug')
+})
+eleventyConfig.setLibrary('md', markdownLibrary)
+
+// Layouts
+eleventyConfig.addLayoutAlias('base', 'base.njk')
+eleventyConfig.addLayoutAlias('post', 'post.njk')
+
+// Copy/pass-through files
+eleventyConfig.addPassthroughCopy('src/assets/css')
+eleventyConfig.addPassthroughCopy('src/assets/js')
+
+return {
+  templateFormats: ['md', 'njk', 'html', 'liquid'],
+  htmlTemplateEngine: 'njk',
+  passthroughFileCopy: true,
+  dir: {
+    input: 'src',
+    // better not use "public" as the name of the output folder (see above...)
+    output: '_site',
+    includes: '_includes',
+    layouts: 'layouts',
+    data: '_data'
+  }
+}
 }
