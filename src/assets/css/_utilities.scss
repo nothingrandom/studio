@@ -86,7 +86,7 @@
 
     src: url('#{$file-path}.woff2') format('woff2'),
       url('#{$file-path}.woff') format('woff'),
-      url('#{$file-path}.otf') format('opentype'),
+      url('#{$file-path}.eot') format('opentype'),
       url('#{$file-path}.ttf') format('truetype');
   }
 }
