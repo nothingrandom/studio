@@ -100,7 +100,7 @@ module.exports = async function(eleventyConfig) {
       "_components/*.{css,js}": `static/`,
 
       // CSS/JS
-      "static/fonts": "static/fonts",
+      "static/fonts": "static/fonts/",
       "static/js": "static/js",
       "static/*.{css,js}": "static/",
 
