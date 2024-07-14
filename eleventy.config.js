@@ -4,6 +4,8 @@ const { DateTime } = require("luxon");
 const { URL } = require("url");
 const numeral = require("numeral");
 const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
+const markdownItToc = require("markdown-it-table-of-contents");
 const { encode } = require("html-entities");
 const { YoutubeTranscript } = require("youtube-transcript");
 const { AssetCache } = require("@11ty/eleventy-fetch");
@@ -19,6 +21,9 @@ const { imageShortcode, opengraphImageHtml, screenshotImageHtmlFullUrl } = plugi
 const pluginSass = require("./_11ty/sassPlugin.js");
 
 const pluginNavigation = require("@11ty/eleventy-navigation");
+
+// const pluginImageAvatar = require("./_11ty/imageAvatarPlugin.js");
+// const pluginAnalytics = require("./_11ty/analyticsPlugin.js");
 
 const JS_ENABLED = true;
 

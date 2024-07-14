@@ -16,10 +16,14 @@
   @include reader-hide(hide);
 }
 
-.content--section {
-  width: 1280px;
+.content--main {
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.content--section {
+  margin: 0 40px;
 
   h1 {
     font-size: em(56px);
