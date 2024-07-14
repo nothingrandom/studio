@@ -1,0 +1,6 @@
+_11ty/
+REAADME.md
+package-lock.json
+node_modules
+.env
+.cache
