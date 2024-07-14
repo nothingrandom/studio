@@ -1,0 +1,95 @@
+:root {
+  color: $black;
+  font-family: $sans;
+}
+
+@include header-style {
+  font-family: $sans;
+}
+
+@include paragraph-style {
+  font-family: $sans;
+}
+
+.sr-only,
+.a11y-only {
+  @include reader-hide(hide);
+}
+
+.content--section {
+  width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  h1 {
+    font-size: em(56px);
+    text-align: center;
+  }
+}
+
+.content--section__profile {
+  gap: 20px;
+  margin-bottom: 60px;
+  @include flex();
+
+  .profile__item {
+    width: 100%;
+    padding: 20px;
+    border: 2px solid $black;
+    margin-bottom: 40px;
+    text-align: center;
+
+    @include breakpoint(md) {
+      width: 50%;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: em(42px);
+    }
+
+    p {
+      margin: 10px 0 20px;
+      font-size: em(24px);
+    }
+  }
+}
+
+.button {
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
+  padding: 20px 50px;
+  border: 2px solid $black;
+  background-color: $white;
+  color: $black;
+  font-size: em(24px);
+  font-weight: bold;
+  text-decoration: none;
+
+  &::after {
+    position: absolute;
+    top: 8px;
+    right: -8px;
+    bottom: -8px;
+    left: 8px;
+    z-index: -1;
+    content: '';
+    background-color: $black;
+  }
+
+  &:hover,
+  &:active {
+    background-color: $black;
+    color: $white;
+    transition: all 0.3s ease;
+
+    &::after {
+      border: 2px solid $black;
+      background-color: $white;
+      transition: all 0.3s ease;
+    }
+  }
+}
+

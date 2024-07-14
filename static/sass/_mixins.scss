@@ -1,0 +1,11 @@
+@mixin flex {
+  & {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @include breakpoint(md) {
+      flex-direction: row;
+    }
+  }
+}

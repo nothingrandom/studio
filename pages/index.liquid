@@ -1,0 +1,15 @@
+---
+title: studio nothingrandom
+titleScreenReaderOnly: true
+layout: layouts/pagealign.liquid
+permalink: /
+---
+<div class="content--section">
+  <h1>studio nothingrandom</h1>
+  <div class="content--section__profile">
+    {% comment %} {{ collection.profiles | length }} {% endcomment %}
+    {% for profile in collections.profiles %}
+      {% include "profile" %}
+    {% endfor %}
+  </div>
+</div>

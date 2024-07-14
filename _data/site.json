@@ -1,0 +1,26 @@
+{
+	"name": "studio nothingrandom",
+	"description": "Home of @nothingrandom and @indiagrantauthor",
+	"avatarImgAttrs": {
+		"src": "./img/benjamingrant-2024.jpg",
+		"alt": "Benjamin Grant",
+		"class": "my-avatar",
+		"loading": "eager",
+		"fetchpriority": "high"
+	},
+	"author": "Benjamin Grant",
+	"domain": "nothingrandom.studio",
+	"url": "https://nothingrandom.studio/",
+  "social": [
+    {
+      "type": "benjamin",
+			"icon": "fal fa-mailbox",
+      "url": "mailto:benjamin@nothingrandom.com"
+    },
+    {
+      "type": "india",
+			"icon": "fab fa-mailbox",
+      "url": "mailto:india@nothingrandom.com"
+    }
+  ]
+}
