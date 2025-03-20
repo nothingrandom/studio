@@ -1,0 +1,22 @@
+---
+// import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+import Profile from '../components/Profile.astro';
+
+import { getCollection } from 'astro:content';
+const profiles = await getCollection('profiles');
+---
+
+<Layout title="studio nothingrandom">
+  <div class="content--section">
+    <h1>studio nothingrandom</h1>
+    <div class="content--section__profile">
+      {profiles.map((profile) => (
+        <Profile
+          imagePath={profile.data.profileImage.src}
+          profile={profile}
+        />
+      ))}
+    </div>
+  </div>
+</Layout>
