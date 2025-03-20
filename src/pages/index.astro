@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Profile from '../components/Profile.astro';
 
 import { getCollection } from 'astro:content';
-const profiles = await getCollection('profiles');
+const profiles = (await getCollection('profiles')).sort((a, b) => a.id.localeCompare(b.id));
 ---
 
 <Layout title="studio nothingrandom">
