@@ -1,0 +1,35 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+import type { CollectionEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+
+interface Props {
+  imagePath: string;
+  profile: CollectionEntry<'profiles'>;
+}
+
+const { profile, imagePath } = Astro.props;
+
+const entry = await getEntry('profiles', profile.id);
+if (!entry) {
+  throw new Error(`Profile not found: ${profile.id}`);
+}
+
+const { Content } = await render(entry);
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/images/profiles/*.jpg');
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob`);
+
+---
+<div class="profile__item">
+  <Image
+    src={images[imagePath]()}
+    alt={profile.data.profileImage.alt}
+    width="800"
+    height="800"
+  />
+  <Content />
+  <a class='button' href={ profile.data.external_link }'>Visit site</a>
+</div>
