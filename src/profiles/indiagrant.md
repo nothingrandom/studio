@@ -6,4 +6,4 @@ external_link: https://indiagrant.com
 ---
 ## India
 
-copywriter and author
+creative and academic

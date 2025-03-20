@@ -29,6 +29,7 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob`)
     alt={profile.data.profileImage.alt}
     width="800"
     height="800"
+    loading="eager"
   />
   <Content />
   <a class='button' href={ profile.data.external_link }'>Visit site</a>
