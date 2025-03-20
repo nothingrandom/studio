@@ -1,0 +1,21 @@
+@use 'utilities';
+
+@include utilities.font-face('Circular', '/fonts/Circular/CircularStd-Book', 400, normal);
+@include utilities.font-face('Circular', '/fonts/Circular/CircularStd-BookItalic', 400, italic);
+
+@include utilities.font-face('Circular', '/fonts/Circular/CircularStd-Medium', 500, normal);
+
+@include utilities.font-face('Circular', '/fonts/Circular/CircularStd-Bold', 700, normal);
+
+$sans: 'Circular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+@include utilities.font-face('Hack', '/fonts/Hack/Hack-Regular', 400, normal);
+$mono: 'Hack', monospace;
+
+@include utilities.header-style {
+  font-family: $sans;
+}
+
+@include utilities.paragraph-style {
+  font-family: $sans;
+}
