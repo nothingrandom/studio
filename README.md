@@ -1,16 +1,14 @@
 # studio nothingrandom
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0c5b00d8-a2fb-4517-bced-1a4ca193afec/deploy-status)](https://app.netlify.com/sites/studionr/deploys)
 
-## Local Dev Setup
+## 🧞 Commands
 
-Prerequisites: Node 18+
+All commands are run from the root of the project, from a terminal:
 
-1. `nvm use`
-2. `npm install`
-
-## Local Dev Workflow
-
-1. `npm start`
-2. Open `http://localhost:8080/`
-
-## Notes
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `bun install`             | Installs dependencies                            |
+| `bun dev`             | Starts local dev server at `localhost:4321`      |
+| `bun build`           | Build your production site to `./dist/`          |
+| `bun preview`         | Preview your build locally, before deploying     |
+| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `bun astro -- --help` | Get help using the Astro CLI                     |

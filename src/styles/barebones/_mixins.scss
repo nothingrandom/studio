@@ -1,0 +1,13 @@
+@use 'utilities';
+
+@mixin flex {
+  & {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @include utilities.breakpoint(md) {
+      flex-direction: row;
+    }
+  }
+}
