@@ -6,4 +6,4 @@ external_link: https://indiagrant.com
 ---
 ## India
 
-creative and academic
+creative / academic
