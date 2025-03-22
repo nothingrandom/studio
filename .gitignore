@@ -1,5 +1,10 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,node
+# Created by https://www.toptal.com/developers/gitignore/api/node,macos,visualstudiocode,astro
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,visualstudiocode,astro
+
+### Astro ###
+# Gitignore template for Astro projects
+# Ignore content collection generated files
+.astro
 
 ### macOS ###
 # General
@@ -193,8 +198,4 @@ dist
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,node
-
-#
-_site
-.cache
+# End of https://www.toptal.com/developers/gitignore/api/node,macos,visualstudiocode,astro
