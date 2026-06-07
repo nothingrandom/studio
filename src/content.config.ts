@@ -12,7 +12,7 @@ const profiles = defineCollection({
       src: z.string(),
       alt: z.string(),
     }),
-    external_link: z.string(),
+    external_link: z.string().optional(),
   })
 });
 

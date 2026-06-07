@@ -32,5 +32,7 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob`)
     loading="eager"
   />
   <Content />
-  <a class='button' href={ profile.data.external_link }'>Visit site</a>
+  {profile.data.external_link && (
+    <a class='button' href={ profile.data.external_link }'>Visit site</a>
+  )}
 </div>
